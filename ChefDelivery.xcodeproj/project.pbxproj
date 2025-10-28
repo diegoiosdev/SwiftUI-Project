@@ -11,6 +11,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2A8929EB2EB143FB004900A3 /* HomeApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HomeApp;
+			sourceTree = "<group>";
+		};
 		2AAFE3E22EB0141900129F78 /* ChefDelivery */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ChefDelivery;
@@ -32,6 +37,7 @@
 		2AAFE3D72EB0141900129F78 = {
 			isa = PBXGroup;
 			children = (
+				2A8929EB2EB143FB004900A3 /* HomeApp */,
 				2AAFE3E22EB0141900129F78 /* ChefDelivery */,
 				2AAFE3E12EB0141900129F78 /* Products */,
 			);
@@ -61,6 +67,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2A8929EB2EB143FB004900A3 /* HomeApp */,
 				2AAFE3E22EB0141900129F78 /* ChefDelivery */,
 			);
 			name = ChefDelivery;

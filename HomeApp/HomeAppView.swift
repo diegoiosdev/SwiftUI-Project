@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeAppView.swift
 //  ChefDelivery
 //
 //  Created by Diego Fernando on 27/10/25.
@@ -14,15 +14,19 @@ struct HomeAppView: View {
                 .padding(.horizontal, 15)
             
             ScrollView(.vertical, showsIndicators: true) {
-                VStack {
+                VStack(spacing: 20) {
                     OrderTypeGridView()
+                    CarouselTabView()
+                    StoresContainerView()
                 }
             }
         }
-        .padding()
     }
 }
 
-#Preview {
-    HomeAppView()
+struct HomeAppView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeAppView()
+            .previewLayout(.sizeThatFits)
+    }
 }

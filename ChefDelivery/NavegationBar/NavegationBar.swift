@@ -31,7 +31,7 @@ struct NavegationBar: View {
 }
 
 /// A visualização apenas que o compomente esta utilizando.
-///
+
 struct NavegationBar_Previews: PreviewProvider {
     static var previews: some View {
         NavegationBar()

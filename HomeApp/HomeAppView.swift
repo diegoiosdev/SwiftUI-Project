@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct HomeAppView: View {
+    
     var body: some View {
-        VStack {
-            NavegationBar()
-                .padding(.horizontal, 15)
+        
+        NavigationView {
             
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(spacing: 20) {
-                    OrderTypeGridView()
-                    CarouselTabView()
-                    StoresContainerView()
+            VStack {
+                
+                NavegationBar()
+                    .padding(.horizontal, 15)
+                
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 20) {
+                        
+                        OrderTypeGridView()
+                        CarouselTabView()
+                        StoresContainerView()
+                    }
                 }
             }
         }

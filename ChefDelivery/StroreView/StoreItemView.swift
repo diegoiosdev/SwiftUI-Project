@@ -12,6 +12,7 @@ struct StoreItemView: View {
     let store: StoreType
     
     var body: some View {
+        
         HStack {
             Image(store.logoImage)
                 .resizable()

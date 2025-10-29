@@ -16,6 +16,7 @@ struct OrderTypeGridView: View {
     var body: some View {
         
         LazyHGrid(rows: gridLayout, spacing: 15) {
+            
             ForEach(orderMock) { orderItem in
                OrderTypeView(orderType: orderItem)
             }

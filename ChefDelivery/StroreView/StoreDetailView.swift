@@ -12,10 +12,12 @@ struct StoreDetailView: View {
     let store: StoreType
     
     @Environment(\.presentationMode) var presentationMode
+    @State private var selectedProduct: ProductType?
     
     var body: some View {
         
         ScrollView(showsIndicators: false) {
+            
             VStack(alignment: .leading) {
                 Image(store.headerImage)
                     .resizable()
@@ -53,27 +55,39 @@ struct StoreDetailView: View {
                 
                 ForEach(store.products) { product in
                     
-                    HStack {
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(product.name)
-                                .bold()
+                    Button {
+                        selectedProduct = product
+                    } label: {
+                        HStack(spacing: 8) {
                             
-                            Text(product.description)
-                                .foregroundStyle(.black.opacity(0.5))
-                            
-                            Text(product.formattedPrice)
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(product.name)
+                                    .bold()
                                 
+                                Text(product.description)
+                                    .foregroundStyle(.black.opacity(0.5))
+                                    .multilineTextAlignment(.leading)
+                                
+                                Text(product.formattedPrice)
+                                    
+                            }
+                    
+                           Spacer()
+                            
+                            Image(product.image)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(width: 120, height: 120)
+                                .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
                         }
-                        
-                        Spacer()
-                        
-                        Image(product.image)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(12)
-                            .frame(width: 120, height: 120)
-                            .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
+                        .padding()
+                        .foregroundStyle(.black)
+                    }
+                    /// Criando um model
+                    ///  o $ é a binding a ligação
+                    .sheet(item: $selectedProduct) { product in
+                        ProductDetailView(product: product)
                     }
                 }
             }

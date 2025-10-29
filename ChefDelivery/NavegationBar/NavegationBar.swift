@@ -10,8 +10,11 @@ import SwiftUI
 struct NavegationBar: View {
     
     var body: some View {
+        
         HStack {
+            
             Spacer()
+            
             Button("Av Cristiano Machado, 4000") {
                 
             }

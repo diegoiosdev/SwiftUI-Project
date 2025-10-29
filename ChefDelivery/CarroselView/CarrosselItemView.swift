@@ -12,6 +12,7 @@ struct CarouselItemView: View {
     let order: OrderType
     
     var body: some View {
+        
         Image(order.image)
             .resizable()
             .scaledToFit()

@@ -12,7 +12,11 @@ struct HomeViewApp: View {
     
     @State private var isAnimating = false
     @State private var imageOffSet: CGSize = .zero
-    let buttunHeight: CGFloat = 80
+    @State private var buttonOffset: CGFloat = 0
+    @State private var showSecondView = false
+    
+    let buttonHeight: CGFloat = 80
+   
     
     var body: some View {
         
@@ -87,6 +91,14 @@ struct HomeViewApp: View {
                             .offset(x:20)
                         
                         HStack {
+                            Capsule()
+                                .fill(Color("ColorRed"))
+                                .frame(width: buttonOffset + buttonHeight)
+                            
+                            Spacer()
+                        }
+                        
+                        HStack {
                             
                             ZStack {
                                 Circle()
@@ -104,8 +116,33 @@ struct HomeViewApp: View {
                             
                             Spacer()
                         }
+                        
+                        .offset(x: buttonOffset)
+                        .gesture(
+                        DragGesture()
+                            .onChanged({ gesture in
+                                if gesture.translation.width >= 0 && buttonOffset <= (geometry.size.width - 60) - buttonHeight {
+                                    withAnimation(.easeInOut(duration: 0.25)) {
+                                        buttonOffset = gesture.translation.width
+                                    }
+                                }
+                            })
+                            .onEnded({ _ in
+                                
+                                if buttonOffset > (geometry.size.width - 60) / 2 {
+                                    showSecondView = true
+                                } else {
+                                    withAnimation(.easeInOut(duration: 0.25)) {
+                                        buttonOffset = 0
+                                    }
+                                }
+                            })
+                        )
                     }
-                    .frame(width: geometry.size.width - 60, height: buttunHeight)
+                    .frame(width: geometry.size.width - 60, height: buttonHeight)
+                    .opacity(isAnimating ? 1 : 0)
+                    .offset(y: isAnimating ? 0 : 100)
+                    
                 }
                 
                 .onAppear {
@@ -113,6 +150,9 @@ struct HomeViewApp: View {
                         isAnimating = true
                     }
                 }
+            }
+            .fullScreenCover(isPresented: $showSecondView) {
+                HomeAppView()
             }
         }
     }

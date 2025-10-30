@@ -17,81 +17,37 @@ struct ProductDetailView: View {
         
         VStack {
             
-            VStack(alignment: .leading, spacing: 16) {
-                
-                Image(product.image)
-                    .resizable()
-                    .scaledToFit()
-                    .shadow(radius: 20)
-                
-                Text(product.name)
-                    .font(.title)
-                    .bold()
-                    .padding(.horizontal)
-                    .padding(.top)
-                
-                Text(product.description)
-                    .padding(.horizontal)
-                
-                Text(product.formattedPrice)
-                    .font(.title3)
-                    .bold()
-                    .padding(.horizontal)
-            }
+            ProductDetailHeaderView(product: product)
             
             Spacer()
+            
+            ProductDetailQuantityView(productQuantity: $productQuantity)
+                           
+            Spacer()
+            
+            ProductDetailButtonView()
+        }
+    }
+}
 
-            VStack(spacing:16) {
+struct ProductDetailButtonView: View {
+    var body: some View {
+        Button {
+            print(Self.self, #function)
+        } label: {
+            HStack {
+                Image(systemName: "cart")
                 
-                Text("Quantidade")
-                    .font(.title3)
-                    .bold()
-                
-                HStack {
-                    
-                    Button {
-                        if productQuantity > 1 {
-                            productQuantity -= 1
-                        }
-                    } label: {
-                        Image(systemName: "minus.circle.fill")
-                            .font(.title)
-                            .bold()
-                    }
-                    
-                    Text("\(productQuantity)")
-                        .font(.title2)
-                        .bold()
-                    
-                    Button {
-                        productQuantity += 1
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title)
-                            .bold()
-                    }
-                }
+                Text("Adicionar ao carrinho")
             }
-            
-            Spacer()
-            
-            Button {
-                print(Self.self, #function)
-            } label: {
-                HStack {
-                    Image(systemName: "cart")
-                    
-                    Text("Adicionar ao carrinho")
-                }
-                .padding(.horizontal, 32)
-                .padding(.vertical, 16)
-                .font(.title3)
-                .bold()
-                .background(Color("ColorRed"))
-                .foregroundStyle(.white)
-                .cornerRadius(32)
-                .shadow(color: Color("ColorRedDark").opacity(0.5), radius: 10, x: 6, y: 8)
-            }
+            .padding(.horizontal, 32)
+            .padding(.vertical, 16)
+            .font(.title3)
+            .bold()
+            .background(Color("ColorRed"))
+            .foregroundStyle(.white)
+            .cornerRadius(32)
+            .shadow(color: Color("ColorRedDark").opacity(0.5), radius: 10, x: 6, y: 8)
         }
     }
 }

@@ -18,7 +18,7 @@ struct HomeAppView: View {
                 NavegationBar()
                     .padding(.horizontal, 15)
                 
-                ScrollView(.vertical, showsIndicators: true) {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 20) {
                         
                         OrderTypeGridView()

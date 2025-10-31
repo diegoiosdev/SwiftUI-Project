@@ -3,7 +3,7 @@
 //  ChefDelivery
 //
 //  Created by Diego Fernando on 28/10/25.
-//
+///  site do servidor: https://app.apiary.io/newobject/editor
 
 import SwiftUI
 
@@ -15,7 +15,7 @@ struct StoresContainerView: View {
     @State private var ratingFilter = 0
     
     var filterStores: [StoreType] {
-        /// caso o servidor der problema, na linha 19 eu mando o mock
+        /// caso o servidor der problema, na linha 19 eu mando o mock.
         return stores.filter { store in
             store.stars >= ratingFilter
         }

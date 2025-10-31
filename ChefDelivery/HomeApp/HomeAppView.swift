@@ -44,6 +44,7 @@ struct HomeAppView: View {
             Task {
                 await getStores()
             }
+            getStoreWithAlomofire()
         }
         
     }
@@ -63,6 +64,12 @@ struct HomeAppView: View {
         } catch {
             print(error.localizedDescription)
             self.isLoading = false
+        }
+    }
+    
+    func getStoreWithAlomofire() {
+        service.fetchDataWithAlamofire { stores, error in
+            print("\(String(describing: stores))")
         }
     }
 }

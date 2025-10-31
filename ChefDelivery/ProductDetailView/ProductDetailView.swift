@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductDetailView: View {
     
     let product: ProductType
+    var service = HomeService()
     
     @State private var productQuantity = 1
     
@@ -25,20 +26,42 @@ struct ProductDetailView: View {
                            
             Spacer()
             
-            ProductDetailButtonView()
+            ProductDetailButtonView {
+                Task {
+                    await confirmOrder()
+                }
+            }
+        }
+    }
+    
+    /// metodo assincrono
+    func confirmOrder() async {
+        do {
+            let result = try await service.confirmOrder(product: product)
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error.localizedDescription) /// Neste caso real eu crio uma tela de erro para informar para o usuário o que esta acontecendo
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
 
 struct ProductDetailButtonView: View {
+    
+    var onButtonPress: () -> Void
+    
     var body: some View {
         Button {
-            print(Self.self, #function)
+            onButtonPress()
         } label: {
             HStack {
                 Image(systemName: "cart")
                 
-                Text("Adicionar ao carrinho")
+                Text("Enviar pedido")
             }
             .padding(.horizontal, 32)
             .padding(.vertical, 16)

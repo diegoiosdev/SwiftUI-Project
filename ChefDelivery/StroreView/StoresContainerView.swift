@@ -10,10 +10,13 @@ import SwiftUI
 struct StoresContainerView: View {
     
     let title = "Lojas"
+    var stores: [StoreType]
+    
     @State private var ratingFilter = 0
     
     var filterStores: [StoreType] {
-        return storesMock.filter { store in
+        /// caso o servidor der problema, na linha 19 eu mando o mock
+        return stores.filter { store in
             store.stars >= ratingFilter
         }
     }
@@ -83,7 +86,7 @@ struct StoresContainerView: View {
 
 struct StoresContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        StoresContainerView()
+        StoresContainerView(stores: storesMock)
             .previewLayout(.sizeThatFits)
             .padding()
     }
